@@ -9,5 +9,8 @@ import typing
 def element_length(
         lst: typing.Iterable[typing.Sequence]
         ) -> typing.List[typing.Tuple[typing.Sequence, int]]:
-    """Return a list of tuples, where each tuple contains a sequence and its length."""
+    """
+    Return a list of tuples, where each tuple contains
+    a sequence and its length.
+    """
     return tuple([(i, len(i)) for i in lst])
