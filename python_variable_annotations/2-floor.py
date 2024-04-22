@@ -6,6 +6,7 @@ and returning its floor
 
 import typing
 
+
 def floor(n: float) -> int:
-	"""Return the floor of a float"""
-	return int(n)
+    """Return the floor of a float"""
+    return int(n)
