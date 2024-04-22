@@ -10,4 +10,4 @@ def element_length(
         lst: typing.Iterable[typing.Sequence]
         ) -> typing.List[typing.Tuple[typing.Sequence, int]]:
     """Return a list of tuples, where each tuple contains a sequence and its length."""
-    return [(i, len(i)) for i in lst]
+    return tuple([(i, len(i)) for i in lst])
