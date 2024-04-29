@@ -1,4 +1,5 @@
 // Adds a new attribute to a document in the school collection
-db.school.updateMany(
-	{name: "Holberton school"}, 
-	{ $set : {address: "972 Mission street"}})
+db.school.aggregate([
+	{$match:	{name: "Holberton school"}}, 
+	{$addFields : {address: "972 Mission street"}}
+])
