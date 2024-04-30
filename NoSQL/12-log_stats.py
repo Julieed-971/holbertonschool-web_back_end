@@ -13,6 +13,7 @@ print("{} logs".format(logs_count))
 
 # Print the count of ["GET", "POST", "PUT", "PATCH", "DELETE"]
 # methods in documents in logs
+print("Methods:")
 print("\tmethod GET: {}".format(nginx_collection.count_documents(
     {"method": "GET"})))
 print("\tmethod POST: {}".format(nginx_collection.count_documents(
