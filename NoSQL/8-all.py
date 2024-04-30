@@ -16,5 +16,4 @@ def list_all(mongo_collection):
         print([])
 
     # if not empty, list and return all documents in collection
-    documents = mongo_collection.find()
-    return documents
+    return mongo_collection.find()
