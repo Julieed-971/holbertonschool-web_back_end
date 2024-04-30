@@ -14,16 +14,10 @@ if __name__ == "__main__":
     # Print the count of ["GET", "POST", "PUT", "PATCH", "DELETE"]
     # methods in documents in logs
     print("Methods:")
-    print("\tmethod GET: {}".format(nginx_collection.count_documents(
-        {"method": "GET"})))
-    print("\tmethod POST: {}".format(nginx_collection.count_documents(
-        {"method": "POST"})))
-    print("\tmethod PUT: {}".format(nginx_collection.count_documents(
-        {"method": "PUT"})))
-    print("\tmethod PATCH: {}".format(nginx_collection.count_documents(
-        {"method": "PATCH"})))
-    print("\tmethod DELETE: {}".format(nginx_collection.count_documents(
-        {"method": "DELETE"})))
+    methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    for method in methods:
+        print("\tmethod {}: {}".format(method, nginx_collection.count_documents(
+        {"method": method})))
 
     # Print the number of documents with method=GET and path=/status
     print("{} status check".format(nginx_collection.count_documents(
