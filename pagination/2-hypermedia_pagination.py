@@ -57,7 +57,8 @@ class Server:
         except AssertionError:
             Exception
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
+    def get_hyper(self, page: int = 1,
+                  page_size: int = 10) -> Dict[str, List[List]]:
         """
         Returns a dictionnary containing various
         information about dataset pagination
