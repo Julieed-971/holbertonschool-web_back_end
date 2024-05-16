@@ -6,6 +6,6 @@ const isSuccessful = {
 export default function handleResponseFromAPI(promise) {
   return promise
     .then(isSuccessful)
-    .then(console.log('Got a response from the API'))
-    .catch(() => new Error());
+    .catch(() => new Error())
+    .then(console.log('Got a response from the API'));
 }
