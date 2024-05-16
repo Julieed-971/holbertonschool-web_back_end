@@ -3,14 +3,14 @@ const isSuccessful = {
   body: 'Success',
 };
 
-const isNotSuccessfull = 'The fake API is not working currently';
+const isNotSuccessfull = ('The fake API is not working currently');
 
 function getFullResponseFromAPI(success) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (success === true) {
       resolve(isSuccessful);
     } else {
-      reject(isNotSuccessfull);
+      throw new Error(isNotSuccessfull);
     }
   });
 }
