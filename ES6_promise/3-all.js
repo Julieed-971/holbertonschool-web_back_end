@@ -7,7 +7,7 @@ export default function handleProfileSignup() {
     // Use then callback to access promises properties values
     .then(([photoData, userData]) => {
       // Log values to the console
-      console.log(photoData.body, userData.firstName, userData.lastName);
+      console.log(`${photoData.body} ${userData.firstName} ${userData.lastName}`);
     })
     // In case of error, log error message
     .catch(() => new Error('Signup system offline'));
