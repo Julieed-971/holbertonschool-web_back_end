@@ -5,9 +5,7 @@ export default function handleProfileSignup() {
   // Collectively resolve all promises
   return Promise.all([uploadPhoto(), createUser()])
     // Use then callback to access promises properties values
-    .then((values) => {
-      const photoData = values[0];
-      const userData = values[1];
+    .then(([photoData, userData]) => {
       // Log values to the console
       console.log(photoData.body, userData.firstName, userData.lastName);
     })
