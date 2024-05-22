@@ -1,4 +1,4 @@
-# <p align="center">ES6 data ùanipulation</p>
+# <p align="center">ES6 data manipulation</p>
 
 - [Learning Objectives](#Learning_Objectives)
 - [Requirements](#Requirements)
