@@ -1,16 +1,17 @@
 export default function cleanSet(set, startString) {
-  // Checks if startsString is an empty string
-  if (!startString) return '';
-
-  // Convert set to array
+  // Return an empty string if startString is empty
+  if (!startString) {
+    return '';
+  }
+  // Convert the Set object to an array
   const arrayFromSet = [...set];
 
-  // Filter array with element that starts with startString
+  // Filter the array to only include elements that start with startString
   const filteredArray = arrayFromSet.filter((element) => element.startsWith(startString));
 
-  // Trim element of the array of startString length
+  // Remove the startString from the beginning of each element in the array
   const trimmedArray = filteredArray.map((element) => element.slice(startString.length));
 
-  // Return converted array to string
+  // Join the elements of the array into a string, separated by '-'
   return trimmedArray.join('-');
 }
