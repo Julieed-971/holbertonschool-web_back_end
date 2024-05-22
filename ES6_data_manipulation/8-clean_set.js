@@ -1,6 +1,6 @@
 export default function cleanSet(set, startString) {
   // Return an empty string if startString is empty
-  if (!startString) {
+  if (startString === '') {
     return '';
   }
   // Convert the Set object to an array
