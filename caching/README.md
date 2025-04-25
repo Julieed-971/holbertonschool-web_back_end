@@ -36,22 +36,13 @@
 
 ## Mandatory tasks
 
-### Task 0. Basic annotations - add
+### Task 0. Basic dictionary
 
-### Task 1. Basic annotations - concat
+### Task 1. FIFO caching
 
-### Task 2. Basic annotations - floor
+### Task 2. LIFO Caching
 
-### Task 3. Basic annotations - to string
+### Task 3. LRU Caching
 
-### Task 4. Define variables
+### Task 4. MRU Caching
 
-### Task 5. Complex types - list of floats
-
-### Task 6. Complex types - mixed list
-
-### Task 7. Complex types - string and int/float to tuple
-
-### Task 8. Complex types - functions
-
-### Task 9. Let's duck type an iterable object
