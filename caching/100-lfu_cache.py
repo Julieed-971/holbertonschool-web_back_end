@@ -24,18 +24,20 @@ class LFUCache(BaseCaching):
                 self.count[key] += 1
                 self.order.remove(key)
                 self.order.append(key)
-            self.cache_data[key] = item
-            self.count[key] += 1
-            self.order.append(key)
-            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-                min_val = min(self.count.values())
-                results = [key for key
-                           in self.order if self.count[key] == min_val]
-                lfu_key = results[0]
-                self.order.remove(lfu_key)
-                del self.cache_data[lfu_key]
-                del self.count[lfu_key]
-                print(f"DISCARD: {lfu_key}")
+            else:
+                self.cache_data[key] = item
+                self.count[key] = 1
+                self.order.append(key)
+
+                if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+                    min_val = min(self.count.values())
+                    results = [key for key
+                               in self.order if self.count[key] == min_val]
+                    lfu_key = results[0]
+                    self.order.remove(lfu_key)
+                    del self.cache_data[lfu_key]
+                    del self.count[lfu_key]
+                    print(f"DISCARD: {lfu_key}")
 
     def get(self, key):
         """Retrieve an item from the cache."""
