@@ -20,29 +20,25 @@ class LFUCache(BaseCaching):
         one if number of elements in dict exceed the MAX"""
         if key is not None and item is not None:
             if key in self.cache_data:
-                self.cache_data[key] = item
-                self.count[key] += 1
                 self.order.remove(key)
-                self.order.append(key)
-            else:
-                self.cache_data[key] = item
-                self.count[key] = 1
-                self.order.append(key)
-
-                if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-                    min_val = min(self.count.values())
-                    results = [key for key
-                               in self.order if self.count[key] == min_val]
-                    lfu_key = results[0]
-                    self.order.remove(lfu_key)
-                    del self.cache_data[lfu_key]
-                    del self.count[lfu_key]
-                    print(f"DISCARD: {lfu_key}")
+            self.cache_data[key] = item
+            self.count[key] += 1
+            self.order.append(key)
+            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+                min_val = min(self.count.values())
+                results = [key for key, value
+                           in self.count.items() if value == min_val]
+                if len(results) > 1:
+                    lru_key = self.order.pop(0)
+                    del self.cache_data[lru_key]
+                    print(f"DISCARD: {lru_key}")
+                else:
+                    del self.cache_data[results[0]]
+                    print(f"DISCARD: {results[0]}")
 
     def get(self, key):
         """Retrieve an item from the cache."""
         if key is not None and key in self.cache_data:
-            self.count[key] += 1
             self.order.remove(key)
             self.order.append(key)
             return self.cache_data[key]
