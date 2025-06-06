@@ -6,6 +6,7 @@ import re
 
 def filter_datum(fields, redaction, message, separator) -> str:
     """Function that returns the log message obfuscated"""
-    pattern = rf"({'|'.join(map(re.escape,
-                                fields))})=(.*?){re.escape(separator)}"
-    return re.sub(pattern, rf"\1={redaction}{separator}", message)
+    for field in fields:
+        pattern = rf"({field}=)(.*?){separator}"
+        message = re.sub(pattern, rf"\1{redaction}{separator}", message)
+    return message
