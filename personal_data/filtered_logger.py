@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import re
 from typing import List
-
 """Module that returns the log message obfuscated"""
 
 
