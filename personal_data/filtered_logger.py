@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
+"""Module that returns the log message obfuscated"""
 import re
 from typing import List
-"""Module that returns the log message obfuscated"""
 
 
 def filter_datum(fields: List[str], redaction: str,
