@@ -17,8 +17,9 @@ def filter_datum(fields: List[str], redaction: str,
 
 def get_logger() -> logging.Logger:
     """function that takes no arguments
-    user_data = logging.getLogger(propagate=False)
     and returns a logging.Logger object."""
+    user_data = logging.getLogger()
+    user_data.propagate = False
     user_data.setLevel(logging.INFO)
 
     ch = logging.StreamHandler()
