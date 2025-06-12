@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Module that returns the log message obfuscated"""
 import logging
+import mysql.connector
 import re
+import os
 from typing import List
 PII_FIELDS = ('name', 'email', 'ssn', 'password', 'phone')
 
@@ -27,6 +29,21 @@ def get_logger() -> logging.Logger:
     ch.setFormatter(RedactingFormatter)
 
     return user_data
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """returns a connector to the database"""
+    username = os.getenv('PERSONAL_DATA_DB_USERNAME')
+    psswrd = os.getenv('PERSONAL_DATA_DB_PASSWORD')
+    h = os.getenv('PERSONAL_DATA_DB_HOST')
+    db = os.getenv('PERSONAL_DATA_DB_NAME')
+
+    cnx = mysql.connector.connect(user=username,
+                                  password=psswrd,
+                                  host=h,
+                                  database=db
+                                  )
+    return cnx
 
 
 class RedactingFormatter(logging.Formatter):
