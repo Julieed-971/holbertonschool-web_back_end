@@ -85,5 +85,5 @@ class RedactingFormatter(logging.Formatter):
         record.msg = message
         return super().format(record)
 
-
-main()
+if __name__ == '__main__':
+    main()
