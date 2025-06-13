@@ -26,7 +26,9 @@ def get_logger() -> logging.Logger:
 
     ch = logging.StreamHandler()
     ch.setLevel(logging.INFO)
-    ch.setFormatter(RedactingFormatter)
+    ch.setFormatter(RedactingFormatter(list(PII_FIELDS)))
+    user_data.handlers = []  # Remove any existing handlers
+    user_data.addHandler(ch)
 
     return user_data
 
@@ -44,6 +46,24 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
                                   database=db
                                   )
     return cnx
+
+
+def main():
+    """ function that takes no arguments and returns nothing"""
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users")
+    fields = ["name", "email", "phone", "ssn", "password"]
+    logger = get_logger()
+    for row in cursor:
+        message = ("name=" + row[0] + "; email=" + row[1]
+                   + "; phone=" + row[2] + "; ssn=" + row[3] +
+                   "; password=" + row[4] + "; ip=" + row[5]
+                   + "; last_login=" + row[6].strftime("%Y-%m-%d %H:%M:%S")
+                   + "; user_agent="
+                   + row[7] + ";"
+                   )
+        logger.info(message)
 
 
 class RedactingFormatter(logging.Formatter):
@@ -64,3 +84,6 @@ class RedactingFormatter(logging.Formatter):
                                record.msg, self.SEPARATOR)
         record.msg = message
         return super().format(record)
+
+
+main()
