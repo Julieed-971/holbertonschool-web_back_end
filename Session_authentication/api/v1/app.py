@@ -34,6 +34,7 @@ def check_auth():
             abort(401)
         if auth.current_user(request) is None:
             abort(403)
+        request.current_user = auth.current_user(request)
 
 
 @app.errorhandler(404)
