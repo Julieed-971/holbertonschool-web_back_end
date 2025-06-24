@@ -9,7 +9,7 @@ import uuid
 
 class SessionAuth(Auth):
     """Session auth class that inherit from auth"""
-    user_id_by_session_id = {}
+    user_id_by_session_id = dict()
 
     def create_session(self, user_id: str = None) -> str:
         """creates a Session ID for a user_id"""
@@ -17,4 +17,4 @@ class SessionAuth(Auth):
             return None
         self.session_id = str(uuid.uuid4())
         self.user_id_by_session_id[self.session_id] = user_id
-        return self.user_id_by_session_id
+        return self.session_id
