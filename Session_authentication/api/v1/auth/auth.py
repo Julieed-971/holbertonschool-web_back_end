@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Auth module"""
 from flask import request
-from typing import TypeVar, List
 from models.base import Base
+from os import getenv
+from typing import TypeVar, List
 
 
 class Auth(Base):
@@ -30,3 +31,10 @@ class Auth(Base):
     def current_user(self, request=None) -> TypeVar('User'):
         """Returns None"""
         return None
+
+    def session_cookie(self, request=None):
+        """returns a cookie value from a request"""
+        if request is None:
+            return None
+        cookie_name = getenv("SESSION_NAME")
+        return request.cookies.get(cookie_name)
