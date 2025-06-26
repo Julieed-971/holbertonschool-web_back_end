@@ -29,9 +29,6 @@ def users():
 @app.route('/sessions', methods=['POST'])
 def login():
     """Log a user in"""
-    session_id = request.cookies.get('session_id')
-    if session_id and AUTH.get_user_from_session_id(session_id):
-        return "OK", 200
     try:
         email = request.form.get('email')
         password = request.form.get('password')
@@ -46,7 +43,7 @@ def login():
         abort(401)
 
 
-@app.route('/logout', methods=['DELETE'])
+@app.route('/sessions', methods=['DELETE'])
 def logout():
     """Log a user out"""
     try:
