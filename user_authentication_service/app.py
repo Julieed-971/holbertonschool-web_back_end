@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Basic Flask app"""
 from auth import Auth
-from flask import Flask, jsonify, abort, request, make_response
+from flask import Flask, jsonify, abort, request
 from os import getenv
 
 AUTH = Auth()
@@ -41,6 +41,20 @@ def login():
             abort(401)
     except Exception:
         abort(401)
+
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    """Return a user profile"""
+    try:
+        session_id = request.cookies.get('session_id')
+        user = AUTH.get_user_from_session_id(session_id)
+        if user is None:
+            abort(403)
+        email = user.email
+        return jsonify({"email": email}), 200
+    except Exception:
+        abort(403)
 
 
 if __name__ == "__main__":
