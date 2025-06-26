@@ -37,6 +37,9 @@ def login():
             response = jsonify({"email": email, "message": "logged in"})
             response.set_cookie("session_id", session_id)
             return response
+        session_id = request.cookies.get('session_id')
+        if session_id and AUTH.get_user_from_session_id(session_id):
+            return "OK", 200
         else:
             abort(401)
     except Exception:
