@@ -65,6 +65,7 @@ class TestGithubOrgClient(unittest.TestCase):
             repo,
             license_key), expected)
 
+
 @parameterized_class(
     ('org_payload, repos_payload, expected_repos, apache2_repos'), TEST_PAYLOAD
 )
@@ -73,25 +74,25 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     @classmethod
     def setUpClass(GithubOrgClient):
         """Set up the test class"""
-    # should mock requests.get to return example payloads found in the fixtures.
+    # should mock requests.get to return example payloads found in the
+    # fixtures.
     # Use patch to start a patcher named get_patcher, and use side_effect
     # to make sure the mock of requests.get(url).json() returns the correct
     # fixtures for the various values of url that you anticipate to receive.
-        with patch('utils.requests.get') as mock_requests_get:
-            mock_response = Mock()
-            mock_response.json.return_value = TEST_PAYLOAD[0][1]
-            mock_requests_get.return_value = mock_response
-            
-            response = get_json(test_url)
-            GithubOrgClient.assertEqual(response, TEST_PAYLOAD[0][1])
-            
-        get_patcher = patch('__main__.GithubOrgClient', spec=True)
+        get_patcher = patch('utils.requests.get')
         MockClass = get_patcher.start()
         instance = MockClass()
         instance.org.json(org=test_url).side_effect = TEST_PAYLOAD[0][1]
+        instance()
+
+        mock_response = Mock()
+        mock_response.json.return_value = TEST_PAYLOAD[0][1]
+        get_patcher.return_value = mock_response
+
+        response = get_json(test_url)
+        GithubOrgClient.assertEqual(response, TEST_PAYLOAD[0][1])
 
     @classmethod
     def tearDownClass(GithubOrgClient):
         """Tear down the test class"""
         TestIntegrationGithubOrgClient.setUpClass.get_patcher.stop()
-        
