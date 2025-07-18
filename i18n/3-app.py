@@ -21,7 +21,7 @@ app.config.from_object(Config)
 @app.route("/")
 def index():
     """Basic function that return a basic template"""
-    return render_template("0-index.html")
+    return render_template("3-index.html")
 
 
 def get_locale():
