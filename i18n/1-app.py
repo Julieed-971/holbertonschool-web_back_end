@@ -12,8 +12,7 @@ class Config:
 
 def get_locale():
     """Get the locale language"""
-    return app.config['LANGUAGES'][0]
-    # return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 app = Flask(__name__)
