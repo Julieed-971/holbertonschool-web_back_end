@@ -1,18 +1,22 @@
 #!/usr/bin/env python3
 """Module for a basic Flask app"""
 
-from flask import Flask
+from flask import Flask, request
 from flask_babel import Babel
+from config import Config
 
 
-class Config:
-    """Configuration for available languages in app"""
-    LANGUAGES = ['en', 'fr']
+
+def get_locale():
+    """Get the locale language"""
+    return app.config['LANGUAGES'][0]
+    # return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 app = Flask(__name__)
+app.config.from_object(Config)
 babel = Babel(app,
-              default_locale=Config.LANGUAGES[0],
+              locale_selector=get_locale,
               timezone_selector='UTC')
 
 
