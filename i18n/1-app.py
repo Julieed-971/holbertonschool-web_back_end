@@ -17,7 +17,7 @@ def get_locale():
 
 app = Flask(__name__)
 babel = Babel(app,
-              locale_selector=get_locale,
+              default_locale='en',
               timezone_selector='UTC')
 
 
