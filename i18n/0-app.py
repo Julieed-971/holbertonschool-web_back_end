@@ -9,4 +9,4 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     """Basic function that return a basic template"""
-    return render_template('./templates/0-index.html')
+    return "<title>Welcome to Holberton</title><h1>Hello world</h1>"
