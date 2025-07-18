@@ -6,6 +6,10 @@ from flask_babel import Babel
 from config import Config
 
 
+class Config:
+    """Configuration for available languages in app"""
+    LANGUAGES = ['en', 'fr']
+
 
 def get_locale():
     """Get the locale language"""
