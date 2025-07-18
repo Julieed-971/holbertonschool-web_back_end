@@ -1,24 +1,27 @@
 #!/usr/bin/env python3
 """Module for a basic Flask app"""
 
-from flask import Flask, request
+from flask import Flask, render_template
 from flask_babel import Babel
+
+app = Flask(__name__)
+babel = Babel(app)
 
 
 class Config:
     """Configuration for available languages in app"""
     LANGUAGES = ['en', 'fr']
-    TIMEZONE = 'UTC'
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
-app = Flask(__name__)
+
 app.config.from_object(Config)
-babel = Babel(app,
-              default_locale=app.config['LANGUAGES'][0],
-              timezone_selector=app.config['TIMEZONE'])
-
-
 @app.route("/")
-def hello():
+def index():
     """Basic function that return a basic template"""
-    return "<title>Welcome to Holberton</title><h1>Hello world</h1>"
+    return render_template("0-index.html")
+
+
+if __name__ == "__main__":
+    app.run()
