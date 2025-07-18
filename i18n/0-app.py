@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Module for a basic Flask app"""
 
-from flask import Flask, render_template
+from flask import Flask
 
 app = Flask(__name__)
 
