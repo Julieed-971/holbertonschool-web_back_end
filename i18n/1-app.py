@@ -3,7 +3,6 @@
 
 from flask import Flask, request
 from flask_babel import Babel
-from config import Config
 
 
 class Config:
@@ -18,7 +17,6 @@ def get_locale():
 
 
 app = Flask(__name__)
-app.config.from_object(Config)
 babel = Babel(app,
               locale_selector=get_locale,
               timezone_selector='UTC')
