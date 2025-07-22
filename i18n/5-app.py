@@ -43,6 +43,8 @@ def get_locale():
 def get_user():
     """Return a user dict"""
     login_as = request.args.get("login_as")
+    if not login_as:
+        return None
     user_id = int(login_as)
     if user_id and user_id in users:
         return users[user_id]
