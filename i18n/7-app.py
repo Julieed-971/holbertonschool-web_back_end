@@ -70,26 +70,27 @@ def before_request():
         g.user = user
 
 
+def is_valid_timezone(time_zone):
+    """Check if is a valid time zone"""
+    try:
+        timezone(time_zone)
+        return time_zone
+    except exceptions.UnknownTimeZoneError:
+        return None
+
+
 def get_timezone():
     """Get the best match timezone"""
     # Find timezone parameter in URL parameters
-    time = request.args.get('time')
+    time = is_valid_timezone(request.args.get('time'))
     if time:
-        try:
-            timezone(time)
-            return time
-        except exceptions.UnknownTimeZoneError:
-            return app.config['BABEL_DEFAULT_TIMEZONE']
+        return time
     # Find time zone from user settings
     user = get_user()
     if user:
-        time = user['timezone']
+        time = is_valid_timezone(user['timezone'])
         if time:
-            try:
-                timezone(time)
-                return time
-            except exceptions.UnknownTimeZoneError:
-                return app.config['BABEL_DEFAULT_TIMEZONE']
+            return time
     return app.config['BABEL_DEFAULT_TIMEZONE']
 
 
