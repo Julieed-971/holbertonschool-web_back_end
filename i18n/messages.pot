@@ -33,6 +33,10 @@ msgstr ""
 msgid "not_logged_in"
 msgstr ""
 
+#templates/index.html:15
+msgid "current_time_is"
+msgstr ""
+
 #: venv/lib/python3.12/site-packages/click/_termui_impl.py:600
 #, python-brace-format
 msgid "{editor}: Editing failed"

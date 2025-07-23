@@ -34,6 +34,10 @@ msgstr "Vous êtes connecté en tant que %(username)s."
 msgid "not_logged_in"
 msgstr "Vous n'êtes pas connecté."
 
+#templates/index.html:15
+msgid "current_time_is"
+msgstr "Nous sommes le %(current_time)s."
+
 #: venv/lib/python3.12/site-packages/click/_termui_impl.py:600
 #, python-brace-format
 msgid "{editor}: Editing failed"
