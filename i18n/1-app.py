@@ -19,7 +19,7 @@ app.config.from_object(Config)
 
 
 @app.route("/")
-def index():
+def index() -> str:
     """Basic function that return a basic template"""
     return render_template("1-index.html")
 

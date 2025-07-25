@@ -27,12 +27,12 @@ users = {
 
 
 @app.route("/")
-def index():
+def index() -> str:
     """Basic function that return a basic template"""
     return render_template("6-index.html")
 
 
-def get_locale():
+def get_locale() -> str:
     """Get the best match locale language"""
     locale = request.args.get('locale')
     if locale and locale in app.config['LANGUAGES']:
@@ -50,7 +50,7 @@ def get_locale():
     return app.config['BABEL_DEFAULT_LOCALE']
 
 
-def get_user():
+def get_user() -> dict | None:
     """Return a user dict"""
     login_as = request.args.get("login_as")
     if not login_as:

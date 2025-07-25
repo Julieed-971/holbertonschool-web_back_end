@@ -19,12 +19,12 @@ app.config.from_object(Config)
 
 
 @app.route("/")
-def index():
+def index() -> str:
     """Basic function that return a basic template"""
     return render_template("2-index.html")
 
 
-def get_locale():
+def get_locale() -> str:
     """Get the best match locale language"""
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
