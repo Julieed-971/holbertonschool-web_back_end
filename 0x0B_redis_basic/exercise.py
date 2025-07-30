@@ -7,7 +7,7 @@ import uuid
 from typing import Union, Optional, Callable
 
 
-def count_calls(count: Callable) -> Callable:
+def count_calls(method: Callable) -> Callable:
     """Decorator that counts calls to a method.
     
     Args:
@@ -16,13 +16,13 @@ def count_calls(count: Callable) -> Callable:
     Returns:
         Callable: The wrapped method with call counting functionality.
     """
-    key = count.__qualname__
+    key = method.__qualname__
 
-    @functools.wraps(count)
+    @functools.wraps(method)
     def wrapper(self, *args, **kwargs):
         self._redis.incr(key)
 
-        return count(self, *args, **kwargs)
+        return method(self, *args, **kwargs)
     return wrapper
 
 
