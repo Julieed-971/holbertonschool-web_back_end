@@ -11,7 +11,7 @@ def count_calls(method: Callable) -> Callable:
     """Decorator that counts calls to a method.
     
     Args:
-        count (Callable): The method to be decorated.
+        method (Callable): The method to be decorated.
         
     Returns:
         Callable: The wrapped method with call counting functionality.
@@ -20,8 +20,17 @@ def count_calls(method: Callable) -> Callable:
 
     @functools.wraps(method)
     def wrapper(self, *args, **kwargs):
+        """Wrapper function that increments call count and executes the original method.
+        
+        Args:
+            self: The instance of the class containing the decorated method.
+            *args: Variable length argument list passed to the original method.
+            **kwargs: Arbitrary keyword arguments passed to the original method.
+            
+        Returns:
+            The return value of the original method.
+        """
         self._redis.incr(key)
-
         return method(self, *args, **kwargs)
     return wrapper
 
