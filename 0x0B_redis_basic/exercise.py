@@ -5,10 +5,10 @@ import redis
 import uuid
 
 
-class Cache(redis.Redis):
+class Cache():
     """Redis client class"""
-    def __init__(self):
-        """Instatiate the redis client"""
+    def __init__(self) -> None:
+        """Instantiate the redis client"""
         self._redis = redis.Redis()
         self._redis.flushdb()
 
