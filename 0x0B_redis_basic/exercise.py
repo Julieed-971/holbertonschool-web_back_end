@@ -6,7 +6,7 @@ import uuid
 from typing import Union
 
 
-class Cache():
+class Cache:
     """Redis client class"""
     def __init__(self) -> None:
         """Instantiate the redis client"""
@@ -14,15 +14,7 @@ class Cache():
         self._redis.flushdb()
 
     def store(self, data: Union[str | bytes | int | float]) -> str:
-        """
-        Store data in Redis with a random key.
-
-        Args:
-            data: The data to store (str, bytes, int, or float)
-
-        Returns:
-            The generated key as a string
-        """
-        key = str(uuid.uuid4())
-        self._redis.set(key, data)
-        return key
+        """Store data in Redis with a random key."""
+        rand_key = str(uuid.uuid4())
+        self._redis.set(rand_key, data)
+        return rand_key
