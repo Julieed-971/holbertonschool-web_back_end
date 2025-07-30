@@ -16,10 +16,10 @@ class Cache():
     def store(self, data: Union[str | bytes | int | float]) -> str:
         """
         Store data in Redis with a random key.
-        
+
         Args:
             data: The data to store (str, bytes, int, or float)
-            
+
         Returns:
             The generated key as a string
         """
