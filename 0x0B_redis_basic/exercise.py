@@ -23,6 +23,6 @@ class Cache():
         Returns:
             The generated key as a string
         """
-        rand_key = str(uuid.uuid4())
-        self._redis.set(rand_key, data)
-        return rand_key
+        key = str(uuid.uuid4())
+        self._redis.set(key, data)
+        return key
