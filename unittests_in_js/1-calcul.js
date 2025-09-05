@@ -4,7 +4,7 @@ const calculateNumber = (type, a, b) => {
     if (type === 'SUM') {
         return a + b;
     }
-    else if (type === 'SUBSTRACT') {
+    else if (type === 'SUBTRACT') {
         return a - b
     }
     else if (type === 'DIVIDE') {
