@@ -31,6 +31,6 @@ describe('calculateNumber', () => {
     });
 
     it('should handle negative numbers', () => {
-        assert.strictEqual(calculateNumber('SUM', -1.4, -1.6), -3);
+        assert.strictEqual(calculateNumber('SUBSTRACT', -1.4, -1.6), 1);
     });
 });
