@@ -5,5 +5,8 @@
   },
   "scripts": {
     "test": "mocha"
+  },
+  "dependencies": {
+    "sinon": "^21.0.0"
   }
 }
